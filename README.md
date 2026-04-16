@@ -1,109 +1,189 @@
-# Caffeine Craze Web
+# ☕ Caffeine Craze – Online Coffee Shop Web Application
 
-Caffeine Craze Web is a Jakarta EE web application for a coffee shop workflow with customer ordering, authentication, profile management, and admin dashboards.
+## 🚀 Project Overview
 
-## Features
+Caffeine Craze is a full-stack web application that simulates a modern online coffee ordering system. It enables users to browse coffee products, manage a shopping cart, and place orders seamlessly. Administrators can manage products, users, and orders through a dedicated dashboard.
 
-- Customer storefront pages for browsing and ordering
-- Shopping cart and order processing flow
-- User authentication (login/register)
-- User profile view and edit pages
-- Admin panel for products, users, orders, analytics, and reports
-- MySQL-backed persistence with JDBC
-- Password hashing with BCrypt
+The application is built using **Java JSP, MySQL, Bootstrap 5, and JavaScript**, following a **three-tier architecture** and **MVC design pattern** for scalability, maintainability, and performance.
 
-## Tech Stack
+---
 
-- Java 17
-- Jakarta EE (Web Profile APIs via `jakarta.jakartaee-api`)
-- JSP + JSTL
-- Maven (WAR packaging)
-- MySQL 8
-- JDBC (MySQL Connector/J)
+## ✨ Features
 
-## Project Structure
+### 👤 User Features
 
-- `src/main/java/com/mycompany/caffeinecrazeweb/` : Java source and app configuration
-- `src/main/webapp/` : JSP pages, static assets, and SQL seed script
-- `src/main/webapp/admin/` : Admin dashboard pages
-- `src/main/webapp/auth/` : Authentication pages
-- `src/main/webapp/css/` : Stylesheets
-- `src/main/webapp/js/` : Frontend scripts
-- `src/main/resources/META-INF/persistence.xml` : Persistence configuration
-- `pom.xml` : Maven dependencies and build configuration
+* User Registration & Login (Secure Authentication with BCrypt)
+* Browse Coffee Menu (Hot, Cold, Pastries, etc.)
+* Add to Cart / Remove / Update Quantity
+* Real-time Cart using localStorage
+* Place Orders with Delivery Details
+* Order History & Tracking
+* Responsive UI for all devices
 
-## Prerequisites
+### 🛠️ Admin Features
 
-- JDK 17+
-- Maven 3.8+
-- MySQL Server 8+
-- A Jakarta EE compatible application server (for example: GlassFish 7 or Payara 6)
+* Admin Dashboard (Overview & Analytics)
+* Manage Products (Add, Update, Delete)
+* Manage Orders (Update Status)
+* Manage Users (View & Control Access)
 
-## Database Setup
+---
 
-1. Create a MySQL database named `caffeine_craze`.
-2. Import the SQL script from:
-   - `src/main/webapp/caffeine_craze.sql`
-3. Update database credentials in:
-   - `src/main/java/com/mycompany/caffeinecrazeweb/DBConnection.java`
+## 🏗️ System Architecture
 
-Current defaults in code:
+The project follows a **Three-Tier Architecture**:
 
-- Host: `localhost`
-- Port: `3306`
-- Database: `caffeine_craze`
-- Username: `root`
-- Password: empty
+1. **Presentation Layer** – JSP, HTML, CSS, Bootstrap
+2. **Business Logic Layer** – Java (JSP Scriptlets, JDBC)
+3. **Data Layer** – MySQL Database
 
-## Build
+Additionally, it implements the **MVC (Model-View-Controller)** pattern:
 
-Run from the project root:
+* **Model** → MySQL Database
+* **View** → JSP + Bootstrap UI
+* **Controller** → Java logic inside JSP
+
+---
+
+## 🧰 Tech Stack
+
+| Technology    | Purpose                 |
+| ------------- | ----------------------- |
+| Java JSP      | Server-side development |
+| MySQL         | Database management     |
+| JDBC          | Database connectivity   |
+| Bootstrap 5   | Responsive UI           |
+| JavaScript    | Client-side logic       |
+| BCrypt        | Password security       |
+| Apache Tomcat | Server deployment       |
+
+---
+
+## 🔐 Security Features
+
+* BCrypt Password Hashing
+* SQL Injection Prevention using Prepared Statements
+* Session Management (HttpSession)
+* Role-Based Access Control (Admin/User)
+
+---
+
+## 🛒 Core Modules
+
+### 1. Authentication Module
+
+Handles login, registration, and session management securely.
+
+### 2. Product Module
+
+Displays coffee items dynamically with category-based filtering.
+
+### 3. Cart Module
+
+Client-side cart using localStorage for fast and real-time updates.
+
+### 4. Order Processing Module
+
+Uses JDBC transactions to ensure data consistency across multiple tables.
+
+### 5. User Profile Module
+
+Displays user details and complete order history.
+
+### 6. Admin Dashboard Module
+
+Provides analytics, order management, and system control.
+
+---
+
+## 🗄️ Database Design
+
+Main Tables:
+
+* users
+* products
+* orders
+* order_items
+* order_delivery
+
+Relational integrity is maintained using foreign keys and transactions.
+
+---
+
+## ⚙️ Installation & Setup
+
+### Prerequisites
+
+* Java JDK 11+
+* Apache Tomcat 10+
+* MySQL 8+
+* NetBeans / IntelliJ
+* Git
+
+### Steps
+
+1. Clone the repository:
 
 ```bash
-mvn clean package
+git clone https://github.com/your-username/caffeine-craze.git
 ```
 
-This generates:
+2. Import project into IDE
 
-- `target/CaffeineCrazeWeb-1.0-SNAPSHOT.war`
+3. Configure MySQL Database:
 
-## Run / Deploy
+* Create database `caffeine_craze`
+* Import SQL file
 
-### Option 1: NetBeans
+4. Update DB credentials in project
 
-1. Open the project in NetBeans.
-2. Configure your Jakarta EE server.
-3. Run the project.
+5. Deploy on Apache Tomcat
 
-### Option 2: Manual deployment
+6. Run application:
 
-1. Build the WAR with Maven.
-2. Deploy `target/CaffeineCrazeWeb-1.0-SNAPSHOT.war` to your server.
-3. Open in browser (example):
-   - `http://localhost:8080/CaffeineCrazeWeb-1.0-SNAPSHOT/`
+```
+http://localhost:8080/CaffeineCraze
+```
 
-## Useful Pages
+---
 
-- Home: `/index.jsp`
-- Menu: `/menu.jsp`
-- Cart: `/cart.jsp`
-- Login: `/auth/login.jsp`
-- Register: `/auth/register.jsp`
-- Admin: `/admin/index.jsp`
+## 📸 Screenshots
 
-## Notes
+(Add your screenshots here: Home Page, Menu, Cart, Admin Dashboard)
 
-- Session timeout is configured in `src/main/webapp/WEB-INF/web.xml`.
-- REST base path is configured at `/resources` in `JakartaRestConfiguration`.
-- Consider moving DB credentials to environment variables or server configuration for production.
+---
 
-## Contributing
+## 🚀 Future Enhancements
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Open a pull request
+* Payment Gateway Integration (Razorpay/Stripe)
+* Real-time Order Tracking
+* Email Notifications
+* Mobile App (Android/iOS)
+* AI-based Recommendation System
+* Multi-branch Support
 
-## License
+---
 
-Add your preferred license details here (for example MIT, Apache-2.0, or proprietary).
+## 📚 Learning Outcomes
+
+* MVC Architecture Implementation
+* Database Design & Normalization
+* Secure Web Development Practices
+* Full-stack Application Development
+
+---
+
+## 👨‍💻 Author
+
+**Pratham Mishra**
+MCA (AI/ML) – Chandigarh University
+
+---
+
+## 📄 License
+
+This project is for educational purposes.
+
+---
+
+⭐ If you like this project, don't forget to give it a star!
